@@ -12,10 +12,9 @@ namespace ConsoleProject.Entities
 
         public Account() { }
 
-        public Account(int id, double balance)
+        public Account(int id)
         {
             Id = id;
-            Balance = balance;
         }
 
         public void AddHolder(Holder holder)

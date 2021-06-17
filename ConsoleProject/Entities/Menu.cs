@@ -41,6 +41,12 @@ namespace ConsoleProject.Entities
                 Inner();
             }
 
+            else if (menuOption == 4)
+            {
+                AccountServices.Delete();
+                Inner();
+            }
+
             else if(menuOption == 6)
             {
                 Environment.Exit(0);
