@@ -15,7 +15,7 @@ namespace ConsoleProject.Entities
             Console.WriteLine("====================================");
             Console.WriteLine("Choose an option below: \n");
             Console.WriteLine("1. Create a new account");
-            Console.WriteLine("2. Show account infos");
+            Console.WriteLine("2. Show accounts list");
             Console.WriteLine("3. Edit existing account");
             Console.WriteLine("4. Delete existing account");
             Console.WriteLine("5. Access MPS ATM");
@@ -32,6 +32,12 @@ namespace ConsoleProject.Entities
             else if (menuOption == 2)
             {
                 AccountServices.Read();
+                Inner();
+            }       
+            
+            else if (menuOption == 3)
+            {
+                AccountServices.Update();
                 Inner();
             }
 

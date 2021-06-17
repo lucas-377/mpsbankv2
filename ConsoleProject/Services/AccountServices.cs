@@ -45,14 +45,54 @@ namespace ConsoleProject.Services
         {
             Console.Clear();
             Console.WriteLine("====================================");
-            Console.WriteLine("|     Account infos                |");
+            Console.WriteLine("|     Accounts List                |");
             Console.WriteLine("====================================");
 
             foreach(Account account in Accounts)
             {
-                account.Holders.ForEach(Console.WriteLine);
                 Console.WriteLine(account);
+                account.Holders.ForEach(Console.WriteLine);
                 Console.WriteLine();
+            }
+        }
+
+        public static void Update()
+        {
+            Console.Clear();
+            Console.WriteLine("====================================");
+            Console.WriteLine("|     Edit account infos           |");
+            Console.WriteLine("====================================");
+            Console.WriteLine("Choose an option: ");
+            Console.WriteLine("1. Show accounts list");
+            Console.WriteLine("2. Edit account by ID");
+            Console.Write("\nYour option: ");
+            int opt = int.Parse(Console.ReadLine());
+
+            if (opt == 1)
+            {
+                Read();
+            }
+            else if(opt == 2)
+            {
+                Console.Write("\nEnter the account ID to modify: ");
+                int accId = int.Parse(Console.ReadLine());
+
+                Account a = Accounts.Find(x => x.Id == accId);
+
+                if (a != null)
+                {
+                    Console.WriteLine("\nSelected account: ");
+                    Console.WriteLine(a);
+                    a.Holders.ForEach(Console.WriteLine);
+
+                    // Modify logic here.
+
+                    Console.WriteLine("\nAccount modified!\n");
+                }
+                else
+                {
+                    Console.WriteLine("ID not found!");
+                }
             }
         }
     }
