@@ -36,7 +36,7 @@ namespace ConsoleProject.Entities
         {
             if (Balance < amount)
             {
-                Console.Write("No balance for this operation, try with another amount.");
+                Console.WriteLine("No balance for this operation, try with another amount.");
             }
             else
             {

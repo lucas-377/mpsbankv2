@@ -47,6 +47,12 @@ namespace ConsoleProject.Entities
                 Inner();
             }
 
+            else if (menuOption == 5)
+            {
+                AccountServices.ATM();
+                Inner();
+            }
+
             else if(menuOption == 6)
             {
                 Environment.Exit(0);

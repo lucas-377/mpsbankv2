@@ -214,7 +214,7 @@ namespace ConsoleProject.Services
                     Console.WriteLine(a);
                     a.Holders.ForEach(Console.WriteLine);
 
-                    Console.Write("Are you sure you want to delete this account? (y/n): ");
+                    Console.Write("\nAre you sure you want to delete this account? (y/n): ");
                     char delOpt = char.Parse(Console.ReadLine());
 
                     if (delOpt == 'y' || delOpt == 'Y')
@@ -222,6 +222,103 @@ namespace ConsoleProject.Services
                         Accounts.Remove(a);
 
                         Console.WriteLine("Account deleted!");
+                    }
+                }
+            }
+        }
+
+        public static void ATM()
+        {
+            Console.Clear();
+            Console.WriteLine("====================================");
+            Console.WriteLine("|     ATM Operations               |");
+            Console.WriteLine("====================================");
+            Console.WriteLine("Choose an option: ");
+            Console.WriteLine("1. Show accounts list");
+            Console.WriteLine("2. Deposit value");
+            Console.WriteLine("3. Withdraw value");
+            Console.Write("\nYour option: ");
+            int opt = int.Parse(Console.ReadLine());
+
+            if (opt == 1)
+            {
+                Read(); // Print accounts list
+
+                Console.Write("Select account by ID? (y/n): ");
+                char op = char.Parse(Console.ReadLine());
+
+                if (op == 'y' || op == 'Y')
+                {
+                    Console.WriteLine("Choose an option: ");
+                    Console.WriteLine("1. Deposit value");
+                    Console.WriteLine("2. Withdraw value");
+                    Console.Write("\nYour option: ");
+                    int optIn = int.Parse(Console.ReadLine());
+
+                    if(optIn == 1)
+                    {
+                        Deposit();
+                    }
+                    else if(optIn == 2)
+                    {
+                        Withdraw();
+                    }
+                }
+            }
+
+            else if(opt == 2)
+            {
+                Deposit();
+            }
+
+            else if (opt == 3)
+            {
+                Withdraw();
+            }
+
+            static void Deposit()
+            {
+                Console.Write("\nEnter the account ID you want to operate: ");
+                int accId = int.Parse(Console.ReadLine());
+
+                Account a = Accounts.Find(x => x.Id == accId); // Search account by specified id using lambda expression
+
+                if (a != null)
+                {
+                    Console.WriteLine("\nSelected account: ");
+                    Console.WriteLine(a);
+                    a.Holders.ForEach(Console.WriteLine);
+
+                    Console.Write("\nEnter the deposit value: ");
+                    double depOpt = double.Parse(Console.ReadLine());
+
+                    a.Deposit(depOpt);
+
+                    Console.WriteLine($"Deposited $ {depOpt} new balance: $ {a.Balance}");
+                }
+            }
+
+            static void Withdraw()
+            {
+                Console.Write("\nEnter the account ID you want to operate: ");
+                int accId = int.Parse(Console.ReadLine());
+
+                Account a = Accounts.Find(x => x.Id == accId); // Search account by specified id using lambda expression
+
+                if (a != null)
+                {
+                    Console.WriteLine("\nSelected account: ");
+                    Console.WriteLine(a);
+                    a.Holders.ForEach(Console.WriteLine);
+
+                    Console.Write("\nEnter the withdraw value: ");
+                    double depOpt = double.Parse(Console.ReadLine());
+
+                    a.Withdraw(depOpt);
+
+                    if (a.Balance > depOpt)
+                    {
+                        Console.WriteLine($"Withdrawed $ {depOpt} new balance: $ {a.Balance}");
                     }
                 }
             }
